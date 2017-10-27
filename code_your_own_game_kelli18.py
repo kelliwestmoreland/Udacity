@@ -31,13 +31,13 @@ def launch_levels(quiz_level):
     while True:
         if quiz_level == "easy":
             print "You chose 'easy'"
-            return easy_quiz, easy_answers
+            return easy_test, easy_answers
         elif quiz_level == "intermediate":
             print "You chose 'intermediate'"
-            return intermediate_quiz, intermediate_answers
+            return intermediate_test, intermediate_answers
         elif quiz_level == "hard":
             print "You chose 'hard'"
-            return hard_quiz, hard_answers
+            return hard_test, hard_answers
 #returning (output) specific test questions and answer key
 def launch_game():
     quiz_level = raw_input('Choose easy, intermediate or hard here ==> ')

@@ -119,10 +119,11 @@ main_page_content = '''
 
 # A single movie entry html template
 movie_tile_content = '''
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
-    <img src="{poster_image_url}" width="220" height="342">
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer" data-content="writer", "release_date">
+    <img src="{poster_image_url}" width="220" height="342"> 
     <h2>{movie_title}</h2>
-	<button type="button" class="btn btn-primary btn-lg" data-toggle="popover" title="movie.title" data-content="writer", "release_date">Movie information</button>	
+  <h4>{writer}</h4> 
+  <h4>{release_date}</h4>
 </div>
 '''
 
@@ -139,12 +140,20 @@ def create_movie_tiles_content(movies):
         content += movie_tile_content.format(
             movie_title=movie.title,
             poster_image_url=movie.poster_image_url,
-            trailer_youtube_id=trailer_youtube_id,
-			screenwriter=movie.screenwriter,
-			launch_date=movie.launch_date
+            trailer_youtube_id=trailer_youtube_id
         )
     return content
-
+  
+def create_movie_information(movies):
+    # The HTML content for this section of the page
+    information = ''
+    for information in movies:
+        information += movie_tile_content.format(
+          writer=movie.writer,
+          release_date=movie.release_date 
+    )
+    return information
+  
 def open_movies_page(movies):
   # Create or overwrite the output file
   output_file = open('fresh_tomatoes.html', 'w')
